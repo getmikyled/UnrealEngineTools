@@ -1,0 +1,23 @@
+{
+	"FileVersion": 3,
+	"Version": 3,
+	"VersionName": "1.0.2",
+	"FriendlyName": "Mythica",
+	"Description": "Library of procedural tools.",
+	"Category": "Procedural",
+	"CreatedBy": "Mythica",
+	"CreatedByURL": "https://www.mythica.ai/",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EngineVersion": "5.4.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "Mythica",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}
