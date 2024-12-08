@@ -14,8 +14,6 @@
 #include "Engine/Texture.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/SkeletalMeshComponent.h"
-#include "NiagaraSystem.h"
-#include "NiagaraEmitter.h"
 
 // Generated h file
 #include "QuickAssetAction.generated.h"
@@ -54,8 +52,6 @@ private:
 		{UTexture2D::StaticClass(), TEXT("T_")},
 		{UUserWidget::StaticClass(), TEXT("WBP_")},
 		{USkeletalMeshComponent::StaticClass(), TEXT("SK_")},
-		{UNiagaraSystem::StaticClass(), TEXT("NS_")},
-		{UNiagaraEmitter::StaticClass(), TEXT("NE_")}
 	};
 
 	void FixUpRedirectors();
