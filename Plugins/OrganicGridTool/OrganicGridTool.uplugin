@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "OrganicGridTool",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "Mikyle Mosquera",
+	"CreatedByURL": "https://www.linkedin.com/in/mikmosquera/",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "OrganicGridTool",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}
