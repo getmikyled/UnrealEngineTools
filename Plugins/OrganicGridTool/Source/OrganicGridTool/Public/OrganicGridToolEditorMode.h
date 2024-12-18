@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "InputRouter.h"
+#include "OrganicGridActor.h"
 #include "Tools/UEdMode.h"
 #include "OrganicGridToolEditorMode.generated.h"
 
@@ -36,9 +37,8 @@ public:
 	virtual void ActorSelectionChangeNotify() override;
 	virtual void CreateToolkit() override;
 	virtual TMap<FName, TArray<TSharedPtr<FUICommandInfo>>> GetModeCommands() const override;
+	
+	AOrganicGridActor* SelectedOrganicGridActor;
 
-	UPROPERTY()
-	UEdModeInteractiveToolsContext* EdModeInteractiveToolsContext;
-	UPROPERTY()
-	UInputRouter* InputRouter;
+	bool IsToolActive = false;
 };

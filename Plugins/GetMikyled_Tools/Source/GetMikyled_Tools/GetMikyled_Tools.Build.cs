@@ -25,7 +25,7 @@ public class GetMikyled_Tools : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core","Blutility","EditorScriptingUtilities", "UMG", "Niagara", "UnrealEd", "AssetTools",
+				"Core","Blutility","EditorScriptingUtilities", "UMG", "UnrealEd", "AssetTools",
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);

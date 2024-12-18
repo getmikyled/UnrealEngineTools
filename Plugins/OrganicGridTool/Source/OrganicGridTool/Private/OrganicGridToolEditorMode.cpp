@@ -5,14 +5,15 @@
 #include "EdModeInteractiveToolsContext.h"
 #include "InteractiveToolManager.h"
 #include "OrganicGridToolEditorModeCommands.h"
-#include "OrganicGridGizmo.h"
-
 
 //////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////// 
 // AddYourTool Step 1 - include the header file for your Tools here
 //////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////// 
+#include "Editor.h"
+#include "Runtime/Datasmith/CADKernel/Public/CADKernel/Core/Types.h"
+#include "Shader/ShaderTypes.h"
 #include "Tools/OrganicGridToolSimpleTool.h"
 #include "Tools/OrganicGridToolInteractiveTool.h"
 
@@ -30,17 +31,11 @@ FString UOrganicGridToolEditorMode::InteractiveToolName = TEXT("OrganicGridTool_
 ///
 UOrganicGridToolEditorMode::UOrganicGridToolEditorMode()
 {
-	FModuleManager::Get().LoadModule("EditorStyle");
-
 	// appearance and icon in the editing mode ribbon can be customized here
 	Info = FEditorModeInfo(UOrganicGridToolEditorMode::EM_OrganicGridToolEditorModeId,
 		LOCTEXT("ModeName", "OrganicGridTool"),
 		FSlateIcon(),
 		true);
-
-	// Create the tools context
-	EdModeInteractiveToolsContext = CreateDefaultSubobject<UEdModeInteractiveToolsContext>(FName("EdModeInteractiveToolsContext"));
-	InputRouter = CreateDefaultSubobject<UInputRouter>(FName("InputRouter"));
 }
 
 ///-///////////////////////////////////////////////////////////////////////////////////////////
@@ -53,6 +48,13 @@ UOrganicGridToolEditorMode::~UOrganicGridToolEditorMode()
 ///
 void UOrganicGridToolEditorMode::ActorSelectionChangeNotify()
 {
+	if (GetToolManager()->GetActiveTool(EToolSide::Left) == nullptr)
+	{
+		if (GEditor)
+		{
+			USelection* SelectedActors = GEditor->GetSelectedActors();
+		}
+	}
 }
 
 ///-///////////////////////////////////////////////////////////////////////////////////////////
@@ -74,22 +76,12 @@ void UOrganicGridToolEditorMode::Enter()
 
 	// active tool type is not relevant here, we just set to default
 	GetToolManager()->SelectActiveToolType(EToolSide::Left, SimpleToolName);
-
-	//////////////////////////////////////////////////////////////////////////
-	// Register organic grid gizmos
-	EdModeInteractiveToolsContext->InitializeContextWithEditorModeManager(GetModeManager(), InputRouter);
 }
 
 ///-///////////////////////////////////////////////////////////////////////////////////////////
 ///
 void UOrganicGridToolEditorMode::Exit()
 {
-	if (EdModeInteractiveToolsContext)
-	{
-		EdModeInteractiveToolsContext->ShutdownContext();
-		EdModeInteractiveToolsContext = nullptr;
-	}
-
 	Super::Exit();
 }
 
@@ -98,8 +90,6 @@ void UOrganicGridToolEditorMode::Exit()
 void UOrganicGridToolEditorMode::ModeTick(float DeltaTime)
 {
 	Super::ModeTick(DeltaTime);
-	
-	DrawOrganicGridGizmo();
 }
 
 ///-///////////////////////////////////////////////////////////////////////////////////////////
